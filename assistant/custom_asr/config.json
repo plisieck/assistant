@@ -1,0 +1,368 @@
+{
+  "decoderConfig": {
+    "useFinalProbs": true, 
+    "latticeBeamSize": 1.0, 
+    "maxActive": 2000, 
+    "minActive": 200, 
+    "acousticScale": 0.83, 
+    "beamSize": 10.0
+  }, 
+  "asrModel": {
+    "version": "0.1.0"
+  }, 
+  "asrLmAdaptation": {
+    "version": "0.7.4"
+  }, 
+  "endpointingRules": {
+    "rule3": {
+      "maxRelativeCost": 8.0, 
+      "minTrailingSilence": 1.0, 
+      "minUtteranceLength": 0.0, 
+      "mustContainNonsilence": true
+    }, 
+    "rule2": {
+      "maxRelativeCost": 3.5, 
+      "minTrailingSilence": 0.5, 
+      "minUtteranceLength": 0.0, 
+      "mustContainNonsilence": true
+    }, 
+    "rule1": {
+      "maxRelativeCost": 10000000000.0, 
+      "minTrailingSilence": 4.0, 
+      "minUtteranceLength": 0.0, 
+      "mustContainNonsilence": false
+    }, 
+    "rule5": {
+      "maxRelativeCost": 10000000000.0, 
+      "minTrailingSilence": 0.0, 
+      "minUtteranceLength": 10.0, 
+      "mustContainNonsilence": false
+    }, 
+    "rule4": {
+      "maxRelativeCost": 10000000000.0, 
+      "minTrailingSilence": 2.0, 
+      "minUtteranceLength": 0.0, 
+      "mustContainNonsilence": true
+    }
+  }, 
+  "postprocessors": [
+    {
+      "Regex": {
+        "pattern": "`locality`START .[^`]*? `locality`DECOY`EMPTY `locality`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`locality`START .[^`]*? `locality`DECOY`INSIDE .*? `locality`END`DECOY `locality`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`locality`START`DECOY (.*?) `locality`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`locality`START (.*?) `locality`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`country`START .[^`]*? `country`DECOY`EMPTY `country`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`country`START .[^`]*? `country`DECOY`INSIDE .*? `country`END`DECOY `country`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`country`START`DECOY (.*?) `country`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`country`START (.*?) `country`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`region`START .[^`]*? `region`DECOY`EMPTY `region`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`region`START .[^`]*? `region`DECOY`INSIDE .*? `region`END`DECOY `region`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`region`START`DECOY (.*?) `region`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`region`START (.*?) `region`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsnumber`START .[^`]*? `snipsnumber`DECOY`EMPTY `snipsnumber`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsnumber`START .[^`]*? `snipsnumber`DECOY`INSIDE .*? `snipsnumber`END`DECOY `snipsnumber`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsnumber`START`DECOY (.*?) `snipsnumber`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsnumber`START (.*?) `snipsnumber`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`conditionName`START .[^`]*? `conditionName`DECOY`EMPTY `conditionName`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`conditionName`START .[^`]*? `conditionName`DECOY`INSIDE .*? `conditionName`END`DECOY `conditionName`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`conditionName`START`DECOY (.*?) `conditionName`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`conditionName`START (.*?) `conditionName`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`houseroom`START .[^`]*? `houseroom`DECOY`EMPTY `houseroom`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`houseroom`START .[^`]*? `houseroom`DECOY`INSIDE .*? `houseroom`END`DECOY `houseroom`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`houseroom`START`DECOY (.*?) `houseroom`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`houseroom`START (.*?) `houseroom`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`item`START .[^`]*? `item`DECOY`EMPTY `item`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`item`START .[^`]*? `item`DECOY`INSIDE .*? `item`END`DECOY `item`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`item`START`DECOY (.*?) `item`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`item`START (.*?) `item`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`temperatureName`START .[^`]*? `temperatureName`DECOY`EMPTY `temperatureName`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`temperatureName`START .[^`]*? `temperatureName`DECOY`INSIDE .*? `temperatureName`END`DECOY `temperatureName`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`temperatureName`START`DECOY (.*?) `temperatureName`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`temperatureName`START (.*?) `temperatureName`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`geographicalPOI`START .[^`]*? `geographicalPOI`DECOY`EMPTY `geographicalPOI`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`geographicalPOI`START .[^`]*? `geographicalPOI`DECOY`INSIDE .*? `geographicalPOI`END`DECOY `geographicalPOI`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`geographicalPOI`START`DECOY (.*?) `geographicalPOI`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`geographicalPOI`START (.*?) `geographicalPOI`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`unit`START .[^`]*? `unit`DECOY`EMPTY `unit`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`unit`START .[^`]*? `unit`DECOY`INSIDE .*? `unit`END`DECOY `unit`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`unit`START`DECOY (.*?) `unit`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`unit`START (.*?) `unit`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsdatetime`START .[^`]*? `snipsdatetime`DECOY`EMPTY `snipsdatetime`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsdatetime`START .[^`]*? `snipsdatetime`DECOY`INSIDE .*? `snipsdatetime`END`DECOY `snipsdatetime`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsdatetime`START`DECOY (.*?) `snipsdatetime`END`DECOY", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`snipsdatetime`START (.*?) `snipsdatetime`END", 
+        "flags": "i", 
+        "replacement": "$1"
+      }
+    }, 
+    {
+      "Regex": {
+        "pattern": "`PATTERN`DECOY`START .*? `PATTERN`DECOY`END", 
+        "flags": "i", 
+        "replacement": "unknownword"
+      }
+    }
+  ], 
+  "asrEngine": {
+    "version": "0.1.0"
+  }
+}
